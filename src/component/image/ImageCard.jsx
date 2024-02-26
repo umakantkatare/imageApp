@@ -1,15 +1,20 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ImageCard(imageUrl, id) {
-    
+    const navigate = useNavigate()
+
+    const imageDetails = () =>{
+      navigate(`/${id}`)
+    }
 
   return (
     <div>
-        <Link to={`/${id}`}>
-        <img src={imageUrl}  />
-        </Link>
+      hello
+       
+        <img src={imageUrl} onClick={imageDetails} />
+       
     
     </div>
   )

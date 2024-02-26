@@ -7,26 +7,30 @@ import ImageCard from "../image/ImageCard";
 function UseImage() {
   const [imageList, setImageList] = useState([]);
   const [error, setError] = useState("")
+  const [imageUrl, setImageUrl] = useState("https://api.slingacademy.com/v1/sample-data/photos?limit=20")
+  const [next, setNext] = useState('')
+  const [prev, setPrev] = useState('')
 
  
 
-
+const imageData = async() =>{
+  try {
+    const res = await axios.get(imageUrl)
+    setImageList(res.data.photos)
+  } catch (error) {
+    setError(error.message)
+  }
+}
 
   useEffect(() => {
-   
-    axios.get("https://api.slingacademy.com/v1/sample-data/photos?limit=20")
-    .then((res) =>
-    setImageList(res.data.photos)
-   )
-   .catch((error) => 
-   console.log(setError(error.message)))
-  }, []);
+   imageData()
+  }, [imageUrl]);
 
 
   return (
     <div>
   
-     <div  className=" grid grid-cols-3 gap-4 items-center">
+     <div  className=" grid grid-cols-3 gap-4 items-center ">
      {imageList.map((img) => {
       const {
         id,url,title
@@ -34,8 +38,9 @@ function UseImage() {
 
       return (
       <div key={id} >
-        <img src={url} alt="" />
+        <img src={url} alt="" className=" cursor-pointer" />
 <p>{title} </p>
+{/* <p>{id} </p> */}
      </div>
       )
      })}
@@ -44,6 +49,11 @@ function UseImage() {
 
      <div>
       {Error !== "" && <h2>{error}</h2>}
+     </div>
+
+     <div className="flex items-center justify-center ">
+      <button className=" text-center bg-slate-500 m-2 p-1 px-2 rounded-sm">Prev</button>
+      <button className=" text-center bg-slate-500 m-2 p-1 px-2 rounded-sm">Next</button>
      </div>
     
     </div>

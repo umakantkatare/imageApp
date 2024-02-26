@@ -3,13 +3,14 @@ import { useState } from 'react'
 
 import './App.css'
 import UseImage from './component/hooks/UseImage'
+import CustomRoutes from './component/routes/CustomRoutes'
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-     <UseImage/>
+   <CustomRoutes/>
     </>
   )
 }
