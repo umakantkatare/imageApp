@@ -11,8 +11,8 @@ function CustomRoutes() {
   return (
    <Routes>
     <Route path='/' element={<UseImage/>} />
-    <Route path='/:id' element={<SingleImage/>} />
-    {/* <Route path='/:id' element={<ImageCard/>} /> */}
+    <Route path="/:i" element={<SingleImage/>} />
+    
 
    </Routes>
   )

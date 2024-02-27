@@ -1,21 +1,19 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 
-function ImageCard(imageUrl, id) {
-    const navigate = useNavigate()
 
-    const imageDetails = () =>{
+function ImageCard({imgUrl, title, id}) {
+  const navigate=useNavigate()
+    
+  const redirectToPage = () => {
       navigate(`/${id}`)
-    }
-
+  }
   return (
     <div>
-      hello
-       
-        <img src={imageUrl} onClick={imageDetails} />
-       
-    
+      <img src={imgUrl} alt="" onClick={redirectToPage} />
+      <p> {title}</p>
     </div>
   )
 }
