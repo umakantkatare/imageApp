@@ -11,9 +11,9 @@ function ImageCard({imgUrl, title, id}) {
       navigate(`/${id}`)
   }
   return (
-    <div>
-      <img src={imgUrl} alt="" onClick={redirectToPage} />
-      <p> {title}</p>
+    <div className=' rounded-lg cursor-pointer h-full w-full object-cover text-center  '>
+      <img src={imgUrl} onClick={redirectToPage} className='rounded-lg' />
+      <p onClick={redirectToPage}> {title}</p>
     </div>
   )
 }

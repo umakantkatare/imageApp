@@ -4,18 +4,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ImageCard from "../image/ImageCard";
 
+
 function UseImage() {
   const [imageList, setImageList] = useState([]);
   const [error, setError] = useState("");
-  const [imageUrl, setImageUrl] = useState(
-    "https://api.slingacademy.com/v1/sample-data/photos?limit=20"
-  );
-  const [next, setNext] = useState("");
-  const [prev, setPrev] = useState("");
+  
 
   const imageData = async () => {
     try {
-      const res = await axios.get(imageUrl);
+      const res = await axios.get("https://api.slingacademy.com/v1/sample-data/photos?limit=20");
       setImageList(res.data.photos);
     } catch (error) {
       setError(error.message);
@@ -24,11 +21,11 @@ function UseImage() {
 
   useEffect(() => {
     imageData();
-  }, [imageUrl]);
+  }, []);
 
   return (
-    <div>
-      <div className=" grid grid-cols-3 gap-4 items-center ">
+    <div >
+      <div className=" grid grid-cols-1 gap-4 items-center md:grid-cols-4 p-5 m-auto justify-center w-full " >
         {imageList?.map((img) => {
           const { id, url, title } = img;
 
@@ -40,21 +37,10 @@ function UseImage() {
           );
         })}
       </div>
-
-      {/* {imageList?.map((e, i) => {
-        return <ImageCard id={e.id} imgUrl={e.url} key={i} />;
-      })} */}
-
       <div>{Error !== "" && <h2>{error}</h2>}</div>
 
-      <div className="flex items-center justify-center ">
-        <button className=" text-center bg-slate-500 m-2 p-1 px-2 rounded-sm">
-          Prev
-        </button>
-        <button className=" text-center bg-slate-500 m-2 p-1 px-2 rounded-sm">
-          Next
-        </button>
-      </div>
+     
+   
     </div>
   );
 }
